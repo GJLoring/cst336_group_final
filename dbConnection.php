@@ -1,10 +1,13 @@
 <?php
    ini_set('display_errors', 'On');
    error_reporting(E_ALL);
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
  ?>
 
 <?php
-    function getDatabaseConnection($dbname = 'cst336_final'){
+    function getDatabaseConnection($dbname = 'store'){
         $host = "localhost";
         $username = "root";
         $password = "";

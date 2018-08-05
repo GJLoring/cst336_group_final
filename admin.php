@@ -1,16 +1,18 @@
 <?php
-    ini_set('display_errors', 'On');
-    error_reporting(E_ALL);
-    session_start();
+   ini_set('display_errors', 'On');
+   error_reporting(E_ALL);
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+    
     if(!isset($_SESSION['userLevel']))
     {
      echo " 8. Debug message userLevel not set:";
      header("Location:login.php");
     }
     include './dbConnection.php';
-    $conn = getDatabaseConnection("cst336_final");
+    $conn = getDatabaseConnection("store");
 
-    }
 ?>
 
 <!DOCTYPE html>

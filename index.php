@@ -1,12 +1,15 @@
 <?php 
    ini_set('display_errors', 'On');
    error_reporting(E_ALL);
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
  ?>
  
 <?php
     include './dbConnection.php';
 
-    $conn = getDatabaseConnection("cst336_final");
+    $conn = getDatabaseConnection("store");
       
 ?>
 
@@ -18,7 +21,7 @@
     </head>
     <body>
         <div>
-            <h1> CST336 Cell Phone ELectronics Online Store </h1>
+            <h1> CST336 Cell Phone Electronics Online Store </h1>
 
             Navigation Bar Goes here ( Home / Login / Cart )
             <a href="login.php">( Replace Me Login )</a>

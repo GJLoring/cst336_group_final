@@ -2,11 +2,13 @@
 
    ini_set('display_errors', 'On');
    error_reporting(E_ALL);
-
-   session_start(); 
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+    
    include './dbConnection.php';
 
-   $conn = getDatabaseConnection("cst336_final");
+   $conn = getDatabaseConnection("store");
    //echo " 1. Debug message:". isset($_POST['loginForm']);
    //echo " 2. Debug message:". $_POST['username'];
    //echo " 3. Debug message:". $_POST['password'];
@@ -19,7 +21,7 @@
       
       
       $sql = "SELECT *
-      FROM om_admin
+      FROM users
       WHERE username = :username
       AND password = :password";  
       
@@ -39,7 +41,7 @@
          echo " 7. Debug message record found:". $_POST['username'];
          $_SESSION['incorrect'] = false;
          $_SESSION['loginName'] = $record['firstName'] . " " . $record['lastName'];
-         $_SESSION['userLevel'] = $record['userLevel'];
+         $_SESSION['userLevel'] = $record['loginLevel'];
          echo " 8. Debug message record found:". $_POST['loginName'];
          header("Location:admin.php");
       }
