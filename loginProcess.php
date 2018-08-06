@@ -5,34 +5,34 @@
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
     }
-    
+
    include './dbConnection.php';
 
    $conn = getDatabaseConnection("store");
    //echo " 1. Debug message:". isset($_POST['loginForm']);
    //echo " 2. Debug message:". $_POST['username'];
    //echo " 3. Debug message:". $_POST['password'];
-   //if (isset($_POST['loginForm'])) { //Check me 
+   //if (isset($_POST['loginForm'])) { //Check me
 
       //echo " 4. Debug message:". $_POST['username'];
       //echo " 5. Debug message:". $_POST['password'];
       $username = $_POST['username'];
-      $password = sha1($_POST['password']); 
-      
-      
+      $password = sha1($_POST['password']);
+
+
       $sql = "SELECT *
-      FROM users
+      FROM cellstore_users
       WHERE username = :username
-      AND password = :password";  
-      
+      AND password = :password";
+
       $np = array();
       $np[':username'] = $username;
       $np[':password'] = $password;
-      
+
       $stmt = $conn->prepare($sql);
       $stmt->execute($np);
       $record = $stmt->fetch(PDO::FETCH_ASSOC);
-      
+
       if (empty($record)) {
          echo " 6. Debug message record not found:". $_POST['username'];
          $_SESSION['incorrect'] = true;
