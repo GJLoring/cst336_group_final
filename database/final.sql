@@ -63,7 +63,23 @@ CREATE TABLE IF NOT EXISTS `product` (
 );
 
 INSERT INTO `product` (`itemId`, `UnitPrice`, `productName`, `description`, `category`, `image`) VALUES
-(1, 1000, 'iphone8', 'The best phone ever', 'iPhone','imgage1.png'),
-(2,  999, 'iphone7', 'Something found in a time capsule', 'iPhone','imgage1.png'),
-(4,  199, 'Android', 'At least it looks like a iPhone from a distance', 'Android','imgage1.png');
-
+(1, 1000, 'iphoneX', 'iPhone X', 'iPhone','iphonex.png'),
+(2,  799, 'iphone8+', 'iPhone 8 Plus', 'iPhone','iphone8plus.png'),
+(3,  699, 'iphone8', 'iPhone 8', 'iPhone','iphone8.png'),
+(4,  669, 'iphone7+', 'iPhone 7 Plus', 'iPhone','iphone7-plus.png'),
+(5,  549, 'iphone7', 'iPhone 7', 'iPhone','iphone7.png'),
+(6,  549, 'iphone6s+', 'iPhone 6s Plus', 'iPhone','iphone6s-plus.png'),
+(7,  449, 'iphone6s', 'iPhone 6s', 'iPhone','iphone6s.png'),
+(8,  349, 'iphoneSE', 'iPhone SE', 'iPhone','iphoneSE.png'),
+(9,  839, 'SamsungS9+', 'SamsungS9 Plus', 'Android','samsung-galaxy-s9plus.png'),
+(10, 719, 'SamsungS9', 'SamsungS9', 'Android','samsung-galaxy-s9.png'),
+(11, 589, 'SamsungS8+', 'SamsungS8 Plus', 'Android','samsung-galaxy-s8plus.png'),
+(12, 499, 'SamsungS8', 'SamsungS8', 'Android','samsung-galaxy-s8.png'),
+(13, 600, 'GooglePixel2', 'Google Pixel 2', 'Android','google-pixel2.png'),
+(14, 700, 'GooglePixel2XL', 'Google Pixel 2XL', 'Android','google-pixel2xl.png'),
+(15, 300, 'MotorolaX4', 'Motorola X4', 'Android','motorola-x4.png'),
+(16, 250, 'MotorolaG6', 'Motorola G6', 'Android','motorola-g6.png'),
+(17, 380, 'LG-G6', 'LG G6', 'Android','lg-g6.png'),
+(18, 740, 'LG-V30', 'LG V30', 'Android','lg-v30.png'),
+(19, 750, 'LG-G7ThinQ', 'LG G7 Thin Q', 'Android','lg-g7-thinq.png'),
+(20, 529, 'OnePlus6', 'OnePlus 6', 'Android','oneplus6.png');
