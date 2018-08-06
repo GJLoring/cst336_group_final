@@ -72,6 +72,10 @@
     </head>
     <body>
     <h1>Product Update </h1>
+        <a href="index.php">Home</a>
+        <a href="login.php">Login</a>
+        <a href="addProduct.php">Add Product</a>
+        <a href="updateProduct.php">Update Product</a>
     <form>
         <input type="hidden" name="productId" value="<?=$product['productId']?>"/>
         <strong>Product Name</strong> <input = "text" class="form-control" value="<?=$product['productName']?>" name= "productName"><br>

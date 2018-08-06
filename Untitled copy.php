@@ -6,7 +6,7 @@
 <?php
     include './dbConnection.php';
 
-    $conn = getDatabaseConnection("cst336_final");
+    $conn = getDatabaseConnection("store");
       
 ?>
 

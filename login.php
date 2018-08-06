@@ -19,8 +19,8 @@
          <div></div>
          <div>
             <form method="post" action="loginProcess.php">
-                  Username: <input type="text" name="username" /> <br />
-                  Password: <input type="password" name="password" /> <br />
+                  Username ( admin_1 ): <input type="text" name="username" /> <br />
+                  Password ( s3cr3t ): <input type="password" name="password" /> <br />
                   <input type="submit" class='btn btn-primary' name="submitForm" value="Login!" />
             </form>
          </div>

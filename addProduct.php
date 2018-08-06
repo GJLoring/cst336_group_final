@@ -46,9 +46,10 @@
     </head>
     <body>
         <h1>  CST336 Cell Phone Electronics Online Store Product Add </h1>
+        <a href="index.php">Home</a>
         <a href="login.php">Login</a>
-        <a href="login.php">Add Product</a>
-        <a href="login.php">Products</a>
+        <a href="addProduct.php">Add Product</a>
+        <a href="updateProduct.php">Update Product</a>
         <form>
             <strong>Product Name</strong> <input = "text" class="form-control" name= "productName"><br>
             <strong>Description</strong><textarea name="description" class="form-control" cols=50 rows = 4></textarea><br>
