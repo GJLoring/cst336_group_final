@@ -12,25 +12,25 @@
     //    $product = getProductInfo();
     //}
 
-    function getCategories($catId)
+  function getCategories($itemId)
     {
         global $conn;
-         $sql = "SELECT catId, description, catName from category ORDER BY catName";
+        $sql = "SELECT itemId, catName FROM category ORDER BY catName";
 
         $statement = $conn->prepare($sql);
         $statement->execute();
         $records = $statement->fetchAll(PDO::FETCH_ASSOC);
         foreach($records as $record){
             echo "<option ";
-            echo ($record["catId"] == $catId)? "selected": "";
-            echo " value = '" .$record["catId"]."'>".$record['catName']."</option>";
+            echo ($record["itemId"] == $itemId)? "selected": "";
+            echo " value = '" .$record["itemId"]."'>".$record['catName']."</option>";
         }
     }
 
     function getProductInfo()
     {
         global $conn;
-        $sql = "SELECT * FROM product WHERE itemId = ". $_GET['itemId'];
+        $sql = "SELECT * FROM product WHERE catId = ". $_GET['catId'];
 
         $statement = $conn->prepare($sql);
         $statement->execute();
@@ -40,21 +40,21 @@
     }
 
 
-    if(isset($_GET['itemId'])){
+    if(isset($_GET['catId'])){
 
         $sql = "UPDATE product
                 SET productName = :productName,
                     description = : description,
                     image = :image,
-                    UnitPrice = :UnitPrice,
-                    catId = :category
-                WHERE itemId = :itemId";
+                    unitPrice = :unitPrice,
+                    itemId = :itemId
+                WHERE productId = :productId";
         $np = array();
         $np[":productName"] = $_GET['productName'];
         $np[":description"] = $_GET['description'];
         $np[":image"] = $_GET['image'];
-        $np[":UnitPrice"] = $_GET['UnitPrice'];
-        $np[":catId"] = $_GET['catId'];
+        $np[":unitPrice"] = $_GET['unitPrice'];
+        $np[":itemId"] = $_GET['itemId'];
         $np[":productId"] = $_GET['productId'];
 
         $statement = $conn->prepare($sql);
@@ -75,14 +75,14 @@
     <form>
         <input type="hidden" name="productId" value="<?=$product['productId']?>"/>
         <strong>Product Name</strong> <input = "text" class="form-control" value="<?=$product['productName']?>" name= "productName"><br>
-        <strong>Description</strong><textarea name="description" class="form-control" cols=50 rows = 4>value="<?=$product['productDescription']?>" </textarea><br>
-        <strong>Price</strong><input type="text" class="form-control" name="price">value="<?=$product['price']?>" <br>
+        <strong>Description</strong><textarea name="description" class="form-control" cols=50 rows = 4>value="<?=$product['description']?>" </textarea><br>
+        <strong>Unit Price</strong><input type="text" class="form-control" name="unitPrice">value="<?=$product['unitPrice']?>" <br>
         
-        <strong>Catagory</strong><select name="catId" class="form-control">
+        <strong>Catagory</strong><select name="itemId" class="form-control">
             <option value="">Select One</option>
-            <?php getCategories($product['catId']); ?>
+            <?php getCategories($product['itemId']); ?>
         </select><br />
-        <strong>Set image URL</strong><input type="text" name="productImage" class="form-control"> value="<?=$product['productImage']?>" <br>
+        <strong>Set image URL</strong><input type="text" name="image" class="form-control"> value="<?=$product['image']?>" <br>
         <input type="submit" name="submitProduct" class="btn bnt-primary" value="Update Product">
     </form>
     </body>
