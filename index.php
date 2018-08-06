@@ -1,20 +1,80 @@
-<?php 
+<?php
    ini_set('display_errors', 'On');
    error_reporting(E_ALL);
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
     }
- ?>
- 
-<?php
+
     include './dbConnection.php';
+    include 'functions.php';
 
     $conn = getDatabaseConnection("store");
-      
-?>
 
-<?php
-    include 'functions.php';
+    function displaySearchResults(){
+        global $conn;
+
+        if(isset($_GET['searchForm'])){
+            echo "<h3>Products Found:</h3>";
+
+            $namedParameters = array();
+
+            $sql = "SELECT * FROM om_product WHERE 1";
+
+            if(!empty($_GET['product'])){
+                $sql .= " AND productName LIKE :productName";
+                $namedParameters[":productName"] = "%" . $_GET['product']."%";
+            }
+
+            if(!empty($_GET['category'])){
+                $sql .= " AND catId = :categoryId";
+                $namedParameters[":categoryId"] = $_GET['category'];
+            }
+
+            if(!empty($_GET['priceFrom'])){
+                $sql .= " AND price >= :priceFrom";
+                $namedParameters[":priceFrom"] =  $_GET['priceFrom'];
+            }
+
+            if(!empty($_GET['priceTo'])){
+                $sql .= " AND price <= :priceTo";
+                $namedParameters[":priceTo"] = $_GET['priceTo'];
+            }
+
+            if(isset($_GET['orderBy'])){
+                if($_GET['orderBy']=='price'){
+                    $sql .= " ORDER BY price";
+                }
+                else{
+                    $sql .= " ORDER BY productName";
+                }
+            }
+
+            echo $sql;
+            $stmt = $conn->prepare($sql);
+            $stmt->execute($namedParameters);
+            $records = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            foreach($records as $record){
+                echo "<a href=\"purchaseHistory.php?productId=".$record["productId"]. "\"> History </a>";
+                echo  $record["productName"] . " " . $record["productDescription"] . " $" . $record["price"] . "<br /><br />";
+            }
+        }
+    }
+
+    function displayCategories(){
+        global $conn;
+
+        $sql = "SELECT catID, catName from om_category ORDER BY catName";
+
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $records = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach($records as $record){
+            echo "<option valu='".$record["catId"]."'>".$record["catName"]."</option>";
+        }
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -23,7 +83,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-        
+
         <title> CST336 Group Final </title>
         <link href="css/styles.css" rel="stylesheet" type="text/css" />
     </head>
@@ -39,7 +99,7 @@
                         <li><a href='cart.php'>
                             <span class='glyphicon glyphicon-shopping-cart' aria-hidden='true'></span>
                             Cart: </a></li>
-                            
+
                         <li><a href='login.php'>Login</a></li>
                     </ul>
                 </nav>
@@ -48,9 +108,35 @@
 
             <br />
         </div>
-        TODO </br>
-        Create Database
+        <div>
+        <form>
+
+                Product: <input type="text" name="product" />
+                <br />
+                Category:
+                    <select name="category">
+                        <option value=""> Select One </option>
+                        <?=displayCategories()?>
+                    </select>
+                <br>
+
+                Price: From <input type="text" name="priceFrom" size="7" />
+                       To   <input type="text" name="priceTo" size="7" />
+
+                <br>
+                    Order result by:
+                <br>
+
+                <input type="radio" name="orderBy" value="price"/> Price <br />
+                <input type="radio" name="orderBy" value="name"/> Name
+
+                <br><br>
+                <input type="submit" value="Search" name="searchForm" />
+
+            </form>
+        </div>
         <hr>
+        <?=displaySearchResults()?>
         <footer>
             <hr>
             Disclaimer<br />

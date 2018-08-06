@@ -15,7 +15,11 @@
          <header>
             <h1> CST336 Cell Phone ELectronics Online Store Login </h1>
          </header>
-
+         <?php
+            if(errorMessage){
+            echo "<div>$errorMessage</div>";
+            }
+         ?>
          <div></div>
          <div>
             <form method="post" action="loginProcess.php">

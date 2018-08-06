@@ -7,8 +7,8 @@
 
     function getCategories(){
         global $conn;
-users
-        $sql = "SELECT catId, description, catName from cellstore_category ORDER BY catName";
+
+        $sql = "SELECT catId, catName from cellstore_category ORDER BY catName";
         $statement = $conn->prepare($sql);
         $statement->execute();
         $records = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -24,7 +24,7 @@ users
         $productPrice = $_GET['price'];
         $catId = $_GET['catId'];
 
-        $sql = "INSERT INTO cellstore__product
+        $sql = "INSERT INTO cellstore_product
         ( productName, productDescription, productImage, price, catId)
         VALUES ( :productName, :productDescription, :productImage, :price, :catId)";
 
