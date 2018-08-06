@@ -12,25 +12,25 @@
     //    $product = getProductInfo();
     //}
 
-  function getCategories($itemId)
+  function getCategories($catId)
     {
         global $conn;
-        $sql = "SELECT itemId, catName FROM category ORDER BY catName";
+        $sql = "SELECT catId, catName FROM cellstore_category ORDER BY catName";
 
         $statement = $conn->prepare($sql);
         $statement->execute();
         $records = $statement->fetchAll(PDO::FETCH_ASSOC);
         foreach($records as $record){
             echo "<option ";
-            echo ($record["itemId"] == $itemId)? "selected": "";
-            echo " value = '" .$record["itemId"]."'>".$record['catName']."</option>";
+            echo ($record["catId"] == $catId)? "selected": "";
+            echo " value = '" .$record["catId"]."'>".$record['catName']."</option>";
         }
     }
 
     function getProductInfo()
     {
         global $conn;
-        $sql = "SELECT * FROM product WHERE catId = ". $_GET['catId'];
+        $sql = "SELECT * FROM cellstore_product WHERE productId = ". $_GET['productId'];
 
         $statement = $conn->prepare($sql);
         $statement->execute();
@@ -40,21 +40,21 @@
     }
 
 
-    if(isset($_GET['catId'])){
+    if(isset($_GET['productId'])){
 
-        $sql = "UPDATE product
+        $sql = "UPDATE cellstore_product
                 SET productName = :productName,
-                    description = : description,
-                    image = :image,
-                    unitPrice = :unitPrice,
-                    itemId = :itemId
+                    productDescription = : productDescription,
+                    productImage = :productImage,
+                    price = :price,
+                    catId = :catId
                 WHERE productId = :productId";
         $np = array();
         $np[":productName"] = $_GET['productName'];
-        $np[":description"] = $_GET['description'];
-        $np[":image"] = $_GET['image'];
-        $np[":unitPrice"] = $_GET['unitPrice'];
-        $np[":itemId"] = $_GET['itemId'];
+        $np[":productDescription"] = $_GET['description'];
+        $np[":productImage"] = $_GET['productImage'];
+        $np[":price"] = $_GET['price'];
+        $np[":catId"] = $_GET['catId'];
         $np[":productId"] = $_GET['productId'];
 
         $statement = $conn->prepare($sql);
@@ -67,7 +67,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Update Product</title>        
+        <title>Update Product</title>
         <link href="css/styles.css" rel="stylesheet" type="text/css" />
     </head>
     <body>
@@ -79,14 +79,15 @@
     <form>
         <input type="hidden" name="productId" value="<?=$product['productId']?>"/>
         <strong>Product Name</strong> <input = "text" class="form-control" value="<?=$product['productName']?>" name= "productName"><br>
-        <strong>Description</strong><textarea name="description" class="form-control" cols=50 rows = 4>value="<?=$product['description']?>" </textarea><br>
-        <strong>Unit Price</strong><input type="text" class="form-control" name="unitPrice">value="<?=$product['unitPrice']?>" <br>
-        
-        <strong>Catagory</strong><select name="itemId" class="form-control">
+        <strong>Description</strong><textarea name="description" class="form-control" cols=50 rows = 4>value="<?=$product['productDescription']?>" </textarea><br>
+        <strong>Price</strong><input type="text" class="form-control" name="price">value="<?=$product['price']?>" <br>
+
+        <strong>Catagory</strong><select name="catId" class="form-control">
+
             <option value="">Select One</option>
-            <?php getCategories($product['itemId']); ?>
+            <?php getCategories($product['catId']); ?>
         </select><br />
-        <strong>Set image URL</strong><input type="text" name="image" class="form-control"> value="<?=$product['image']?>" <br>
+        <strong>Set image URL</strong><input type="text" name="productImage" class="form-control"> value="<?=$product['productImage']?>" <br>
         <input type="submit" name="submitProduct" class="btn bnt-primary" value="Update Product">
     </form>
     </body>
