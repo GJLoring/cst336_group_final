@@ -16,7 +16,7 @@
 
             $namedParameters = array();
 
-            $sql = "SELECT * FROM om_product WHERE 1";
+            $sql = "SELECT * FROM cellstore_product WHERE 1";
 
             if(!empty($_GET['product'])){
                 $sql .= " AND productName LIKE :productName";
@@ -62,7 +62,7 @@
     function displayCategories(){
         global $conn;
 
-        $sql = "SELECT catID, catName from om_category ORDER BY catName";
+        $sql = "SELECT catID, catName from cellstore_category ORDER BY catName";
 
         $stmt = $conn->prepare($sql);
         $stmt->execute();
@@ -103,30 +103,30 @@
             <br />
         </div>
         <div>
-        <form>
-
+            <form>
+                
                 Product: <input type="text" name="product" />
                 <br />
-                Category:
+                Category: 
                     <select name="category">
                         <option value=""> Select One </option>
                         <?=displayCategories()?>
                     </select>
                 <br>
-
+                
                 Price: From <input type="text" name="priceFrom" size="7" />
                        To   <input type="text" name="priceTo" size="7" />
-
+                       
                 <br>
-                    Order result by:
+                    Order result by: 
                 <br>
-
+                
                 <input type="radio" name="orderBy" value="price"/> Price <br />
                 <input type="radio" name="orderBy" value="name"/> Name
-
+                
                 <br><br>
                 <input type="submit" value="Search" name="searchForm" />
-
+                
             </form>
         </div>
         <hr>
