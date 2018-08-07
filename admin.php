@@ -67,7 +67,7 @@
                 echo "<td><a class = 'btn btn-primary' href='updateProduct.php?productId=".$record['productId']."'>Update</a></td>";
                 echo "<form action='deleteProduct.php' onsubmission='return confirmDelete()'>";
                 echo "<input type='hidden' name='productID' value= ". $record['productId']."/>";
-                echo "<td><input tpe='submit' class='btn btn-danger' value='Remove'></td>";
+                echo "<td><input type='submit' class='btn btn-danger' value='Remove'></td>";
                 echo "</form>";
             }
             echo"</tbody>";
