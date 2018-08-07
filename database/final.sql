@@ -63,8 +63,8 @@ CREATE TABLE IF NOT EXISTS `cellstore_product` (
    `price` float NOT NULL,
   `productName` varchar(25) NOT NULL,
   `productDescription` varchar(500) NOT NULL,
-  `productImage` varchar(500) NOT NULL,
-  `catId` int(11) NOT NULL
+    `catId` int(11) NOT NULL,
+  `productImage` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 INSERT INTO `cellstore_product` (`productId`, `price`, `productName`, `productDescription`, `catId`, `productImage`) VALUES
