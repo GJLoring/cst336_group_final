@@ -1,11 +1,11 @@
 /* Stub just to hold place for now */
 
 -- create the database
-DROP DATABASE IF EXISTS store;
-CREATE DATABASE store;
+DROP DATABASE IF EXISTS store2;
+CREATE DATABASE store2;
 
 -- select the database
-USE store;
+USE store2;
 
 CREATE TABLE IF NOT EXISTS `users` (
   `userId` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
