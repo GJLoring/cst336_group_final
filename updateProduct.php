@@ -73,19 +73,18 @@
         <a href="index.php">Home</a>
         <a href="login.php">Login</a>
         <a href="addProduct.php">Add Product</a>
-
+        <a href="updateProduct.php">Update Product</a>
     <form>
         <input type="hidden" name="productId" value="<?=$product['productId']?>"/>
         <strong>Product Name</strong> <input = "text" class="form-control" value="<?=$product['productName']?>" name= "productName"><br>
-        <strong>Description</strong><textarea name="productDescription" class="form-control" cols=50 rows = 4>value="<?=$product['productDescription']?>" </textarea><br>
-        <strong>Price</strong><input type="text" class="form-control" name="price">value="<?=$product['price']?>" <br>
-
+        <strong>Description</strong><textarea name="productDescription" class="form-control" cols=50 rows = 4 ><?=$product['productDescription']?></textarea><br>
+        <strong>Price</strong><input type="text" class="form-control" name="price"value="<?=$product['price']?>"> <br>
         <strong>Catagory</strong><select name="catId" class="form-control">
 
             <option value="">Select One</option>
             <?php getCategories($product['catId']); ?>
         </select><br />
-        <strong>Set image URL</strong><input type="text" name="productImage" class="form-control"> value="<?=$product['productImage']?>" <br>
+        <strong>Set image URL</strong><input type="text" name="productImage" class="form-control" value="<?=$product['productImage']?>"><br>
         <input type="submit" name="submitProduct" class="btn bnt-primary" value="Update Product">
     </form>
     </body>

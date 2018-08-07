@@ -12,7 +12,6 @@
     }
     include './dbConnection.php';
     $conn = getDatabaseConnection("store");
-    //header("Location: admin.php");
 
 
     function displayAllProducts(){

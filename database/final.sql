@@ -59,11 +59,11 @@ INSERT INTO `cellstore_purchase` (`purchaseId`, `user_id`, `productId`, `quantit
 (4, 2, 4, 2, 199.99, '07/02/2018');
 
 CREATE TABLE IF NOT EXISTS `cellstore_product` (
-   `productId` int(11) NOT NULL,
-   `price` float NOT NULL,
+  `productId` int(11) NOT NULL,
+  `price` float NOT NULL,
   `productName` varchar(25) NOT NULL,
   `productDescription` varchar(500) NOT NULL,
-    `catId` int(11) NOT NULL,
+  `catId` int(11) NOT NULL,
   `productImage` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 

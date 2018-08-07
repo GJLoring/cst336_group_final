@@ -18,14 +18,9 @@
 
             $sql = "SELECT * FROM cellstore_product";
 
-            if(!empty($_GET['product'])){
-                $sql .= " AND productName LIKE :productName";
-                $namedParameters[":productName"] = "%" . $_GET['product']."%";
-            }
-
             if(!empty($_GET['category'])){
-                $sql .= " AND catId = :categoryId";
-                $namedParameters[":categoryId"] = $_GET['category'];
+                $sql .= " WHERE catId = :catId";
+                $namedParameters[":catId"] = $_GET['category'];
             }
 
             echo $sql;
@@ -94,16 +89,6 @@
                         <?=displayCategories()?>
                     </select>
                 <br>
-                
-                Price: From <input type="text" name="priceFrom" size="7" />
-                       To   <input type="text" name="priceTo" size="7" />
-                       
-                <br>
-                    Order result by: 
-                <br>
-                
-                <input type="radio" name="orderBy" value="price"/> Price <br />
-                <input type="radio" name="orderBy" value="name"/> Name
                 
                 <br><br>
                 <input type="submit" value="Search" name="searchForm" />

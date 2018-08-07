@@ -9,7 +9,7 @@
     $conn = getDatabaseConnection("store");
    
     $productId = $_GET['productId'];
-    $sql = "SELECT * FROM om_product NATURAL JOIN om_purchase WHERE productID = :pId";
+    $sql = "SELECT * FROM om_product NATURAL JOIN cellstore_purchase WHERE productID = :pId";
     
     $np = array();
     $np[":pId"] = $productId;
