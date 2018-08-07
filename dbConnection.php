@@ -7,7 +7,7 @@
  ?>
 
 <?php
-    function getDatabaseConnection($dbname = 'store'){
+    function getDatabaseConnection($dbname = 'store2'){
         $host = "localhost";
         $username = "root";
         $password = "";

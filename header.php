@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">	
+    
+    
 <!-- Bootstrap style --> 
     <link id="callCss" rel="stylesheet" href="themes/bootshop/bootstrap.min.css" media="screen"/>
     <link href="themes/css/base.css" rel="stylesheet" media="screen"/>
@@ -31,8 +33,6 @@
                     'item' : $itemid
                 },
                 success: function (response) {
-                    // you will get response from your php page (what you echo or print)
-                    //alert($id);
                     console.log(response);
                     alert($itemid+' added to cart ! ');
                 }
@@ -42,7 +42,6 @@
     <script type="text/javascript">
     $(document).ready(function(){
         $("#categoryid").change(function(){
-          //alert($("#categoryid").val());
            $.ajax({
                 url: "searching.php",
                 type: "POST",
@@ -51,12 +50,10 @@
                     'categorytoken' : true
                 },
                 success: function ($response) {
-                    // you will get response from your php page (what you echo or print)
-                    //alert($id);
                     $('.thumbnails').empty();
                     $('.thumbnails').append($response);
                     if(response ==''){
-                    $('.thumbnails').append(" np record found ");
+                    $('.thumbnails').append(" no record found ");
                     }
                 }
             });   
@@ -70,8 +67,6 @@
                     'srchtoken' : true
                 },
                 success: function ($response) {
-                    // you will get response from your php page (what you echo or print)
-                    //alert($id);
                     	$('.thumbnails').empty();
                     	$('.thumbnails').append($response);
                     if(response ==''){
@@ -89,8 +84,6 @@
                     'sortoken' : true
                 },
                 success: function ($response) {
-                    // you will get response from your php page (what you echo or print)
-                    	//alert($response);
                     	$('.thumbnails').empty();
                     	$('.thumbnails').append($response);
                     if(response ==''){
@@ -105,6 +98,8 @@
 <body>
 <div id="header">
 <div class="container">
+    
+    
 <!-- Navbar ================================================== -->
 <div id="logoArea" class="navbar">
 <a id="smallScreen" data-target="#topMenu" data-toggle="collapse" class="btn btn-navbar">
@@ -115,7 +110,7 @@
   <div class="navbar-inner">
     <a class="brand" href="index.php"><h1>Cell Electronics Store</h1></a>
 		<div class="form-inline navbar-search">
-			<input style="padding-left: 20%; width: 170%;height: 30px; margin-top: 5%" id="srchFld"  type="text" /> 
+			<input style="padding-left: 20%; width: 120%;height: 30px; margin-top: 5%" id="srchFld"  type="text" /> 
 		</div>
     <ul id="topMenu" class="nav pull-right">
 	 <li class=""><a href="index.php">Home</a></li>
@@ -134,6 +129,7 @@
 </div>
 </div>
 </div>
+
 <!-- Header End====================================================================== -->
 <div id="mainBody">
 	<div class="container">

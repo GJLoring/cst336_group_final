@@ -6,7 +6,7 @@
 <?php
     include './dbConnection.php';
 
-    $conn = getDatabaseConnection("store");
+    $conn = getDatabaseConnection("store2");
    
     $productId = $_GET['productId'];
     $sql = "SELECT * FROM om_product NATURAL JOIN cellstore_purchase WHERE productID = :pId";

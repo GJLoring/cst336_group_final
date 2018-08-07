@@ -3,12 +3,12 @@
     ini_set('display_errors', 'On');
     error_reporting(E_ALL);
     include './dbConnection.php';
-    $conn = getDatabaseConnection("store");
+    $conn = getDatabaseConnection("store2");
 
     function getCategories(){
         global $conn;
 
-        $sql = "SELECT catId, catName from cellstore_category ORDER BY catName";
+        $sql = "SELECT catId, catName from category ORDER BY catName";
         $statement = $conn->prepare($sql);
         $statement->execute();
         $records = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -19,12 +19,12 @@
 
     if(isset($_GET['submitProduct'])){
         $productName = $_GET['productName'];
-        $productDescription = $_GET['description'];
+        $productDescription = $_GET['catDescription'];
         $productImage = $_GET['productImage'];
         $productPrice = $_GET['price'];
         $catId = $_GET['catId'];
 
-        $sql = "INSERT INTO cellstore_product
+        $sql = "INSERT INTO product
         ( productName, productDescription, productImage, price, catId)
         VALUES ( :productName, :productDescription, :productImage, :price, :catId)";
 

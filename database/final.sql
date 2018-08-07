@@ -1,7 +1,4 @@
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
-SET time_zone = "+00:00";
+/* Stub just to hold place for now */
 
 -- create the database
 DROP DATABASE IF EXISTS store;
@@ -10,20 +7,7 @@ CREATE DATABASE store;
 -- select the database
 USE store;
 
-CREATE TABLE IF NOT EXISTS `cellstore_category` (
-  `catId` int(11) NOT NULL,
-  `catName` varchar(25) NOT NULL,
-  `catDescription` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Category Table';
-
-INSERT INTO `cellstore_category` (`catId`, `catName`, `catDescription`) VALUES
-(1, 'Flip Phone', 'Burner Phones'),
-(2, 'Car Phone', 'Phones for 80 year old CEOs stuck in the 90s '),
-(3, 'iPhone', 'What all the Hip kids want'),
-(4, 'Android Phone', 'Nice phones to give to those you hate');
-
-
-CREATE TABLE IF NOT EXISTS `cellstore_users` (
+CREATE TABLE IF NOT EXISTS `users` (
   `userId` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
   `fistName` varchar(60) NOT NULL,
   `lastName` varchar(60) NOT NULL,
@@ -34,40 +18,51 @@ CREATE TABLE IF NOT EXISTS `cellstore_users` (
   UNIQUE KEY `userName` (`userName`)
 );
 
-INSERT INTO `cellstore_users` (`userId`, `fistName`, `lastName`, `username`, `loginLevel`, `password`) VALUES
+INSERT INTO `users` (`userId`, `fistName`, `lastName`, `username`, `loginLevel`, `password`) VALUES
 (1, 'Jose', 'lastName', 'admin_1', 'admin', '25ab86bed149ca6ca9c1c0d5db7c9a91388ddeab'),
 (2, 'Grace', 'lastName', 'admin_2', 'admin', '25ab86bed149ca6ca9c1c0d5db7c9a91388ddeab'),
 (3, 'Christian', 'lastName', 'user_1',  'customer', '25ab86bed149ca6ca9c1c0d5db7c9a91388ddeab'),
 (4, 'Gabe', 'lastName', 'user_2',  'customer', '25ab86bed149ca6ca9c1c0d5db7c9a91388ddeab');
 
+CREATE TABLE IF NOT EXISTS `category` (
+  `catId` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
+  `description` varchar(60) NOT NULL,
+  `catName` varchar(60) NOT NULL,
+  PRIMARY KEY (`catID`),
+  UNIQUE KEY `catName` (`catName`)
+);
 
+INSERT INTO `category` (`catId`, `catName`, `description`) VALUES
+(1, 'Flip Phone', 'Burner Phones'),
+(2, 'Car Phone', 'Phones for 80 year old CEOs stuck in the 90s '),
+(3, 'iPhone', 'What all the Hip kids want'),
+(4, 'Android Phone', 'Nice phones to give to those you hate');
 
-CREATE TABLE IF NOT EXISTS `cellstore_purchase` (
-  `purchaseId` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `productId` int(11) NOT NULL,
-  `quantity` smallint(6) NOT NULL,
-  `unitPrice` float NOT NULL,
-  `purchaseDate` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE IF NOT EXISTS `purchase` (
+   `transId` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
+   `Product` varchar(60) NOT NULL,
+   `Quantity` int NOT NULL,
+   `PurchaseDate` varchar(60) NOT NULL,
+   PRIMARY KEY (`transId`)
+);
 
+INSERT INTO `purchase` (`transId`, `Product`, `Quantity`, `PurchaseDate`) VALUES
+(1, 'iphone8', 5, '07/05/2018'),
+(2, 'Android', 4, '07/04/2018'),
+(3, 'iphone7', 3, '07/03/2018'),
+(4, 'Android', 2, '07/02/2018');
 
-INSERT INTO `cellstore_purchase` (`purchaseId`, `user_id`, `productId`, `quantity`, `unitPrice`, `PurchaseDate`) VALUES
-(1, 1, 1, 5, 899.99, '07/05/2018'),
-(2, 3, 2, 4, 199.99, '07/04/2018'),
-(3, 4, 3, 3, 899.99, '07/03/2018'),
-(4, 2, 4, 2, 199.99, '07/02/2018');
+CREATE TABLE IF NOT EXISTS `product` (
+   `itemId` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
+   `UnitPrice` int NOT NULL,
+   `productName` varchar(60) NOT NULL,
+   `description` varchar(60) NOT NULL,
+   `category` varchar(60) NOT NULL,
+   `image` varchar(60) NOT NULL,
+   PRIMARY KEY (`itemId`)
+);
 
-CREATE TABLE IF NOT EXISTS `cellstore_product` (
-  `productId` int(11) NOT NULL,
-  `price` float NOT NULL,
-  `productName` varchar(25) NOT NULL,
-  `productDescription` varchar(500) NOT NULL,
-  `catId` int(11) NOT NULL,
-  `productImage` varchar(500) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-INSERT INTO `cellstore_product` (`productId`, `price`, `productName`, `productDescription`, `catId`, `productImage`) VALUES
+INSERT INTO `product` (`itemId`, `UnitPrice`, `productName`, `description`, `category`, `image`) VALUES
 (1, 1000, 'iphoneX', 'iPhone X', 3,'iphonex.png'),
 (2,  799, 'iphone8+', 'iPhone 8 Plus', 3,'iphone8plus.png'),
 (3,  699, 'iphone8', 'iPhone 8', 3,'iphone8.png'),
@@ -88,5 +83,3 @@ INSERT INTO `cellstore_product` (`productId`, `price`, `productName`, `productDe
 (18, 740, 'LG-V30', 'LG V30', 4,'lg-v30.png'),
 (19, 750, 'LG-G7ThinQ', 'LG G7 Thin Q', 4,'lg-g7-thinq.png'),
 (20, 529, 'OnePlus6', 'OnePlus 6', 4,'oneplus6.png');
-
-
