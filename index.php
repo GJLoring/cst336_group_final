@@ -64,61 +64,6 @@
 
 
 
-
-
-
-<!-- Navbar =============================================== -->
-<div class="span12">     
-<h4>Latest Products</h4>
-      <ul class="thumbnails">
-        <?php
-            $sql = "SELECT * from category right JOIN product ON category.catName=product.category";  
-            $stmt = $conn->prepare($sql);
-            $stmt->execute();
-            $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        ?>
-        <?php
-            foreach ($items as $key => $value) {
-              echo('<li class="span4">
-                  <div class="thumbnail">
-                    <a  href="#"><img src="themes/images/products/6.jpg" alt=""/></a>
-                    <div class="caption">
-                      <h5>'.$value['productName'].'</h5>
-                      <p> 
-                        '.$value['description'].'
-                      </p>
-
-                      <h4 style="text-align:center">
-                        <a class="btn" href="#"> 
-                            <i class="icon-zoom-in"></i></a> 
-                                <a class="btn" onclick=addtocart("'.$value['itemId'].'") >"'.$value['itemId'].'" Add to 
-                                    <i class="icon-shopping-cart"></i></a>
-                                     <a class="btn btn-primary" href="#">$'.$value['UnitPrice'].'
-                                </a>
-                        </h4>
-                    </div>
-                  </div>
-                </li>');
-            }
-        ?>
-      </ul> 
-    <button style="margin-left: 42%;height: 50px;width: 150px" class="btn btn-success">Loadmore</button>
-</div>
-
-
-<!----====================================Call to Footer============================------>
-<?php include("footer.php");?>
-
-
-
-
-
-
-
-
-
-<!--------========================COMMENTING OUT THIS ENTIRE SECTION===================================================
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -133,7 +78,6 @@
         <div>
             <h1> CST336 Cell Phone Electronics Online Store </h1>
             <!-- Bootstrap Navagation Bar -->
-<!--------========================COMMENTING OUT THIS ENTIRE SECTION===================================================
                 <nav class='navbar navbar-default - navbar-right'>
                     <ul class='nav navbar-nav'>
                         <li><a href='index.php'>Home</a></li>
@@ -155,7 +99,7 @@
                 Category: 
                     <select name="category">
                         <option value=""> Select One </option>
-<!--------========================COMMENTING OUT PHP < ?= displayCategories()?>==================================================
+                <?= displayCategories()?>
                         
                     </select>
                 <br>
@@ -166,7 +110,6 @@
             </form>
         </div>
         <hr>
-<!--------========================COMMENTING OUT PHP < ?= displaySearchResults()?>==================================================
         <footer>
             <hr>
             Disclaimer<br />
@@ -176,4 +119,3 @@
        </footer>
     </body>
 </html>
-===========================END COMMENTS==========================================================->
