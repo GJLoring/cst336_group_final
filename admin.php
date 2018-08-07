@@ -51,7 +51,6 @@
             echo "<table class ='table table-hover'>";
             echo "<thead>
                     <tr>
-                    <th scope='col'>ID</th>
                     <th scope='col'>Name</th>
                     <th scope='col'>Description</th>
                     <th scope='col'>Price</th>
@@ -62,15 +61,13 @@
             echo "<tbody>";
             foreach ($records as $record) {
                 echo "<tr>";
-                echo "<td>".$record['productId']. "</td>";
                 echo "<td>" .$record['productName']."</td>";
                 echo "<td>" .$record['productDescription']. "</td>";
                 echo "<td>" .$record['price']. "</td>";
                 echo "<td><a class = 'btn btn-primary' href='updateProduct.php?productId=".$record['productId']."'>Update</a></td>";
-
                 echo "<form action='deleteProduct.php' onsubmission='return confirmDelete()'>";
                 echo "<input type='hidden' name='productID' value= ". $record['productId']."/>";
-                echo "<td><input tpe='submit' class= 'btn btn-danger' value='Remove'></td>";
+                echo "<td><input tpe='submit' class='btn btn-danger' value='Remove'></td>";
                 echo "</form>";
             }
             echo"</tbody>";

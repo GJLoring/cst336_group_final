@@ -5,9 +5,8 @@
 
 	include './dbConnection.php';
 	$conn = getDatabaseConnection("store");
-    if(isset($_GET['productId'])){
-        $product = getProductInfo();
-    }
+    global $product;
+    $product = getProductInfo();
 
   function getCategories($catId)
     {
@@ -36,28 +35,30 @@
         return $record;
     }
 
-
-    if(isset($_GET['productId'])){
-
-        $sql = "UPDATE cellstore_product
-                SET productName = :productName,
-                    productDescription = : productDescription,
-                    productImage = :productImage,
-                    unitPrice = :unitPrice,
-                    catId = :catId
-                WHERE productId = :productId";
-        $np = array();
-        $np[":productName"] = $_GET['productName'];
-        $np[":productDescription"] = $_GET['productDescription'];
-        $np[":productImage"] = $_GET['productImage'];
-        $np[":unitPrice"] = $_GET['unitPrice'];
-        $np[":catId"] = $_GET['catId'];
-        $np[":productId"] = $_GET['productId'];
-
-        $statement = $conn->prepare($sql);
-        $statement->execute($np);
-        echo "Product has been updated!";
-
+    function submitProduct()
+    {
+        if(isset($_GET['productId'])){
+    
+            $sql = "UPDATE cellstore_product
+                    SET productName = :productName,
+                        productDescription = : productDescription,
+                        productImage = :productImage,
+                        price = :price,
+                        catId = :catId
+                    WHERE productId = :productId";
+            $np = array();
+            $np[":productName"] = $_GET['productName'];
+            $np[":productDescription"] = $_GET['productDescription'];
+            $np[":productImage"] = $_GET['productImage'];
+            $np[":price"] = $_GET['price'];
+            $np[":catId"] = $_GET['catId'];
+            $np[":productId"] = $_GET['productId'];
+    
+            $statement = $conn->prepare($sql);
+            $statement->execute($np);
+            echo "Product has been updated!";
+    
+        }
     }
 ?>
 
@@ -72,12 +73,12 @@
         <a href="index.php">Home</a>
         <a href="login.php">Login</a>
         <a href="addProduct.php">Add Product</a>
-        <a href="updateProduct.php">Update Product</a>
+
     <form>
         <input type="hidden" name="productId" value="<?=$product['productId']?>"/>
         <strong>Product Name</strong> <input = "text" class="form-control" value="<?=$product['productName']?>" name= "productName"><br>
         <strong>Description</strong><textarea name="productDescription" class="form-control" cols=50 rows = 4>value="<?=$product['productDescription']?>" </textarea><br>
-        <strong>Price</strong><input type="text" class="form-control" name="unitPrice">value="<?=$product['unitPrice']?>" <br>
+        <strong>Price</strong><input type="text" class="form-control" name="price">value="<?=$product['price']?>" <br>
 
         <strong>Catagory</strong><select name="catId" class="form-control">
 

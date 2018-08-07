@@ -16,7 +16,7 @@
 
             $namedParameters = array();
 
-            $sql = "SELECT * FROM cellstore_product WHERE 1";
+            $sql = "SELECT * FROM cellstore_product";
 
             if(!empty($_GET['product'])){
                 $sql .= " AND productName LIKE :productName";
@@ -26,25 +26,6 @@
             if(!empty($_GET['category'])){
                 $sql .= " AND catId = :categoryId";
                 $namedParameters[":categoryId"] = $_GET['category'];
-            }
-
-            if(!empty($_GET['priceFrom'])){
-                $sql .= " AND price >= :priceFrom";
-                $namedParameters[":priceFrom"] =  $_GET['priceFrom'];
-            }
-
-            if(!empty($_GET['priceTo'])){
-                $sql .= " AND price <= :priceTo";
-                $namedParameters[":priceTo"] = $_GET['priceTo'];
-            }
-
-            if(isset($_GET['orderBy'])){
-                if($_GET['orderBy']=='price'){
-                    $sql .= " ORDER BY price";
-                }
-                else{
-                    $sql .= " ORDER BY productName";
-                }
             }
 
             echo $sql;
