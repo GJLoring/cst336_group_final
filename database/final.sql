@@ -1,5 +1,3 @@
-
-
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
@@ -54,11 +52,11 @@ CREATE TABLE IF NOT EXISTS `cellstore_purchase` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
-INSERT INTO `cellstore_purchase` (`purchaseId`, `user_id`, `productId`, `quantity`, `PurchaseDate`) VALUES
-(1, 1, 'iphone8', 5, '07/05/2018'),
-(2, 3, 'Android', 4, '07/04/2018'),
-(3, 4, 'iphone7', 3, '07/03/2018'),
-(4, 2, 'Android', 2, '07/02/2018');
+INSERT INTO `cellstore_purchase` (`purchaseId`, `user_id`, `productId`, `quantity`, `unitPrice`, `PurchaseDate`) VALUES
+(1, 1, 1, 5, 899.99, '07/05/2018'),
+(2, 3, 2, 4, 199.99, '07/04/2018'),
+(3, 4, 3, 3, 899.99, '07/03/2018'),
+(4, 2, 4, 2, 199.99, '07/02/2018');
 
 CREATE TABLE IF NOT EXISTS `cellstore_product` (
    `productId` int(11) NOT NULL,
@@ -90,3 +88,5 @@ INSERT INTO `cellstore_product` (`productId`, `price`, `productName`, `productDe
 (18, 740, 'LG-V30', 'LG V30', 4,'lg-v30.png'),
 (19, 750, 'LG-G7ThinQ', 'LG G7 Thin Q', 4,'lg-g7-thinq.png'),
 (20, 529, 'OnePlus6', 'OnePlus 6', 4,'oneplus6.png');
+
+

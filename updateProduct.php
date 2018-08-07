@@ -1,16 +1,13 @@
 <?php
-
-   ini_set('display_errors', 'On');
-   error_reporting(E_ALL);
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
     }
 
 	include './dbConnection.php';
 	$conn = getDatabaseConnection("store");
-    //if(isset($_GET['itemId'])){
-    //    $product = getProductInfo();
-    //}
+    if(isset($_GET['productId'])){
+        $product = getProductInfo();
+    }
 
   function getCategories($catId)
     {
@@ -46,14 +43,14 @@
                 SET productName = :productName,
                     productDescription = : productDescription,
                     productImage = :productImage,
-                    price = :price,
+                    unitPrice = :unitPrice,
                     catId = :catId
                 WHERE productId = :productId";
         $np = array();
         $np[":productName"] = $_GET['productName'];
-        $np[":productDescription"] = $_GET['description'];
+        $np[":productDescription"] = $_GET['productDescription'];
         $np[":productImage"] = $_GET['productImage'];
-        $np[":price"] = $_GET['price'];
+        $np[":unitPrice"] = $_GET['unitPrice'];
         $np[":catId"] = $_GET['catId'];
         $np[":productId"] = $_GET['productId'];
 
@@ -62,7 +59,7 @@
         echo "Product has been updated!";
 
     }
-    ?>
+?>
 
 <!DOCTYPE html>
 <html>
@@ -79,8 +76,8 @@
     <form>
         <input type="hidden" name="productId" value="<?=$product['productId']?>"/>
         <strong>Product Name</strong> <input = "text" class="form-control" value="<?=$product['productName']?>" name= "productName"><br>
-        <strong>Description</strong><textarea name="description" class="form-control" cols=50 rows = 4>value="<?=$product['productDescription']?>" </textarea><br>
-        <strong>Price</strong><input type="text" class="form-control" name="price">value="<?=$product['price']?>" <br>
+        <strong>Description</strong><textarea name="productDescription" class="form-control" cols=50 rows = 4>value="<?=$product['productDescription']?>" </textarea><br>
+        <strong>Price</strong><input type="text" class="form-control" name="unitPrice">value="<?=$product['unitPrice']?>" <br>
 
         <strong>Catagory</strong><select name="catId" class="form-control">
 

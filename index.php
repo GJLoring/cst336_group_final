@@ -1,6 +1,4 @@
 <?php
-   ini_set('display_errors', 'On');
-   error_reporting(E_ALL);
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
     }
@@ -90,8 +88,6 @@
     <body>
         <div>
             <h1> CST336 Cell Phone Electronics Online Store </h1>
-
-            Navigation Bar Goes here ( Home / Login / Cart )
             <!-- Bootstrap Navagation Bar -->
                 <nav class='navbar navbar-default - navbar-right'>
                     <ul class='nav navbar-nav'>
@@ -104,8 +100,6 @@
                     </ul>
                 </nav>
                 <br /><br />
-            <a href="login.php">( Replace Me Login )</a>
-
             <br />
         </div>
         <div>
