@@ -39,14 +39,14 @@ if(isset($_SESSION['loginName'])){
                      <form method="post" action="loginProcess.php">
                         <div class="control-group">
                            <br>
-                           <label class="control-label" for="inputEmail1">User Name</label>
+                           <label class="control-label" for="inputEmail1">User Name ( admin_1 )</label>
                            <div class="controls">
                               <input class="span4" name="username" style="height: 30px" type="text" id="inputEmail1" placeholder="username">
                            </div>
                         </div>
                         <div class="control-group">
                            <br>
-                           <label class="control-label" for="inputPassword1">Password</label>
+                           <label class="control-label" for="inputPassword1">Password ( s3cr3t )</label>
                            <div class="controls">
                               <input type="password"  name="password" class="span4" style="height: 30px"  id="inputPassword1" placeholder="Password">
                            </div>
