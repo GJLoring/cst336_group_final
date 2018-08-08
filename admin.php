@@ -41,6 +41,9 @@
         <form action="addProduct.php">
             <input type="submit" class = 'btn btn-secondary' id = "begining" name="addproduct" value="Add Product"/>
         </form>
+        <form action="reports.php">
+            <input type="submit" class = 'btn btn-secondary' id = "begining" name="addproduct" value="View Reports"/>
+        </form>
         <?php $records=displayAllProducts();
             echo "<table class ='table table-hover'>";
             echo "<thead>

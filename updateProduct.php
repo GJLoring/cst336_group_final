@@ -84,7 +84,7 @@
         <strong>Catagory</strong><select name="catId" class="form-control">
 
             <option value="">Select One</option>
-            <?php getCategories($product['catId']); ?>
+            <?php getCategories($product['itemId']); ?>
         </select><br />
         <strong>Set image URL</strong><input type="text" name="productImage" class="form-control" value="<?=$product['image']?>"><br>
         <input type="submit" name="submitProduct" class="btn bnt-primary" value="Update Product">
