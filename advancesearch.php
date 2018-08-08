@@ -60,7 +60,7 @@ if(!isset($_SESSION['loginName'])){
                     foreach ($items as $key => $value) {
                       echo('<li class="span3">
                               <div class="thumbnail">
-                                <a  href="#"><img src="themes/images/products/6.jpg" alt=""/></a>
+                                <a  href="#"><img src="img/'. $value['image'] .'" alt=""/></a>
                                 <div class="caption">
                                   <h5>'.$value['productName'].'</h5>
                                   <p> 
